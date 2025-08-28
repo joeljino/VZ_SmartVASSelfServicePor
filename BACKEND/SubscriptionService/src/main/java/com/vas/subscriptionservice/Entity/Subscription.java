@@ -7,121 +7,76 @@ import java.time.LocalDate;
 @Table(name = "subscriptions")
 public class Subscription {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long subscriptionId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long subscriptionId;
 
-    private Long userId;   // FK to AuthService.users
-    private Long serviceId; // FK to CatalogService.vas_catalog
+	// The user who paid or initiated the subscription
+	private Long userId;   // logical FK to AuthService.users
 
-    @Enumerated(EnumType.STRING)
-    private Status status = Status.ACTIVE;
+	// The phone number of the user who receives the subscription
+	private String targetPhoneNumber;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate nextBillingDate;
+	// Reference to the VAS service in CatalogService
+	private Long serviceId;
 
-    @Enumerated(EnumType.STRING)
-    private BillingCycle billingCycle;
+	@Enumerated(EnumType.STRING)
+	private Status status = Status.ACTIVE;
 
-    private Double price;
-    private Boolean autoRenew = true;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private LocalDate nextBillingDate;
 
-    private LocalDate createdAt = LocalDate.now();
+	@Enumerated(EnumType.STRING)
+	private BillingCycle billingCycle;
 
-    public enum Status {
-        ACTIVE, PENDING, SUSPENDED, CANCELLED, EXPIRED
-    }
+	private Double price;
+	private Boolean autoRenew = true;
 
-    public enum BillingCycle {
-        MONTHLY, QUARTERLY, YEARLY
-    }
+	private LocalDate createdAt = LocalDate.now();
 
-	public Long getSubscriptionId() {
-		return subscriptionId;
+	public enum Status {
+		ACTIVE, INACTIVE
 	}
 
-	public void setSubscriptionId(Long subscriptionId) {
-		this.subscriptionId = subscriptionId;
+	public enum BillingCycle {
+		MONTHLY, QUARTERLY, YEARLY
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
+	// Getters and setters
+	public Long getSubscriptionId() { return subscriptionId; }
+	public void setSubscriptionId(Long subscriptionId) { this.subscriptionId = subscriptionId; }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+	public Long getSubscriberId() { return userId; }
+	public void setSubscriberId(Long userId) { this.userId = userId; }
 
-	public Long getServiceId() {
-		return serviceId;
-	}
+	public String getTargetPhoneNumber() { return targetPhoneNumber; }
+	public void setTargetPhoneNumber(String targetPhoneNumber) { this.targetPhoneNumber = targetPhoneNumber; }
 
-	public void setServiceId(Long serviceId) {
-		this.serviceId = serviceId;
-	}
+	public Long getServiceId() { return serviceId; }
+	public void setServiceId(Long serviceId) { this.serviceId = serviceId; }
 
-	public Status getStatus() {
-		return status;
-	}
+	public Status getStatus() { return status; }
+	public void setStatus(Status status) { this.status = status; }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+	public LocalDate getStartDate() { return startDate; }
+	public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
+	public LocalDate getEndDate() { return endDate; }
+	public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
+	public LocalDate getNextBillingDate() { return nextBillingDate; }
+	public void setNextBillingDate(LocalDate nextBillingDate) { this.nextBillingDate = nextBillingDate; }
 
-	public LocalDate getEndDate() {
-		return endDate;
-	}
+	public BillingCycle getBillingCycle() { return billingCycle; }
+	public void setBillingCycle(BillingCycle billingCycle) { this.billingCycle = billingCycle; }
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
+	public Double getPrice() { return price; }
+	public void setPrice(Double price) { this.price = price; }
 
-	public LocalDate getNextBillingDate() {
-		return nextBillingDate;
-	}
+	public Boolean getAutoRenew() { return autoRenew; }
+	public void setAutoRenew(Boolean autoRenew) { this.autoRenew = autoRenew; }
 
-	public void setNextBillingDate(LocalDate nextBillingDate) {
-		this.nextBillingDate = nextBillingDate;
-	}
-
-	public BillingCycle getBillingCycle() {
-		return billingCycle;
-	}
-
-	public void setBillingCycle(BillingCycle billingCycle) {
-		this.billingCycle = billingCycle;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Boolean getAutoRenew() {
-		return autoRenew;
-	}
-
-	public void setAutoRenew(Boolean autoRenew) {
-		this.autoRenew = autoRenew;
-	}
-
-	public LocalDate getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDate createdAt) {
-		this.createdAt = createdAt;
-	}
+	public LocalDate getCreatedAt() { return createdAt; }
+	public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }
 }

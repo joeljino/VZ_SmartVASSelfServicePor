@@ -25,7 +25,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
-    private String address;
+//    private String address;
 
     private Boolean emailVerified = false;
 
@@ -85,13 +85,13 @@ public class User {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 
     public Boolean getEmailVerified() {
         return emailVerified;

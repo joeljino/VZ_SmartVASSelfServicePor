@@ -43,13 +43,12 @@ public class SubscrService {
             return repo.save(existing);
         }).orElseThrow(() -> new RuntimeException("Subscription not found"));
     }
-
-    public void cancelSubscription(Long id) {
-        repo.findById(id).ifPresent(sub -> {
-            sub.setStatus(Subscription.Status.CANCELLED);
-            repo.save(sub);
-        });
-    }
+//    public void cancelSubscription(Long id) {
+//        repo.findById(id).ifPresent(sub -> {
+//            sub.setStatus(Subscription.Status.CANCELLED);
+//            repo.save(sub);
+//        });
+//    }
 
     private LocalDate calculateNextBillingDate(LocalDate start, Subscription.BillingCycle cycle) {
         return switch (cycle) {

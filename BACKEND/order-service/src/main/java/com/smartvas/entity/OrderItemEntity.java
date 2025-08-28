@@ -14,6 +14,8 @@ import jakarta.persistence.*;
 //@NoArgsConstructor
 public class OrderItemEntity {
 
+    public OrderItemEntity() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id")
@@ -31,6 +33,50 @@ public class OrderItemEntity {
     @Column(name = "total_price", nullable = false)
     private Double totalPrice;
 
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+
     /**
      * Many-to-one relationship to parent order.
      * @JoinColumn specifies the foreign key in this table.
@@ -40,7 +86,7 @@ public class OrderItemEntity {
     @JoinColumn(name = "order_id", nullable = false)
     @JsonIgnore
     private OrderEntity order; //Reference to parent OrderEntity
-    
+
     //Explicit setter for order(so orderservice can call item.setOrder(order))
     public void setOrder(OrderEntity order) {
     	this.order=order;

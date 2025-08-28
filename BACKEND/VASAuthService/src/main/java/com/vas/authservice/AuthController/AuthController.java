@@ -5,6 +5,7 @@ import com.vas.authservice.Entity.User;
 import com.vas.authservice.AuthService.AuthService;
 import com.vas.authservice.config.JwtUtil;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -74,6 +75,7 @@ public class AuthController {
             @ApiResponse(responseCode = "401", description = "Invalid credentials",
                     content = @Content)
     })
+    @CircuitBreaker(name = "authServiceCB", fallbackMethod = "fallbackLoginUser")
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, String> payload) {
         return authService.loginUser(payload.get("username"), payload.get("password"))
                 .map(u -> {
@@ -92,8 +94,16 @@ public class AuthController {
                 });
     }
 
+    public ResponseEntity<Map<String, Object>> fallbackLoginUser(Map<String, String> payload, Throwable t) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", "AuthService unavailable. Please try later.");
+        response.put("details", t.getMessage());
+        return ResponseEntity.status(503).body(response);
+    }
+
     // Admin login with JWT
     @PostMapping("/login/admin")
+    @CircuitBreaker(name = "authServiceCB", fallbackMethod = "fallbackLoginAdmin")
     @Operation(summary = "Admin login", description = "Login for admins with username and password")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Login successful",
@@ -120,6 +130,13 @@ public class AuthController {
                 });
     }
 
+    public ResponseEntity<Map<String, Object>> fallbackLoginAdmin(Map<String, String> payload, Throwable t) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", "AuthService unavailable. Please try later.");
+        response.put("details", t.getMessage());
+        return ResponseEntity.status(503).body(response);
+    }
+
     // Get all users (admin only)
     @GetMapping("/users/admin")
     @Operation(summary = "Get all users", description = "Retrieve a list of all registered users (Admin only)")
@@ -134,6 +151,7 @@ public class AuthController {
 
     // Get user by ID
     @GetMapping("/user/{id}")
+    @CircuitBreaker(name = "authServiceCB", fallbackMethod = "fallbackGetUserById")
     @Operation(summary = "Get user by ID", description = "Retrieve user details by user ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User found",
@@ -157,9 +175,17 @@ public class AuthController {
                     return ResponseEntity.status(404).body(errorResponse);
                 });
     }
+    public ResponseEntity<Map<String, Object>> fallbackGetUserById(Long id, Throwable t) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", "AuthService unavailable. Cannot fetch user.");
+        response.put("userId", id);
+        response.put("details", t.getMessage());
+        return ResponseEntity.status(503).body(response);
+    }
 
     // Get admin by ID
     @GetMapping("/admin/{id}")
+    @CircuitBreaker(name = "authServiceCB", fallbackMethod = "fallbackGetAdminById")
     @Operation(summary = "Get admin by ID", description = "Retrieve admin details by admin ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Admin found",
@@ -182,6 +208,14 @@ public class AuthController {
                     errorResponse.put("error", "Admin not found");
                     return ResponseEntity.status(404).body(errorResponse);
                 });
+    }
+
+    public ResponseEntity<Map<String, Object>> fallbackGetAdminById(Long id, Throwable t) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", "AuthService unavailable. Cannot fetch admin.");
+        response.put("adminId", id);
+        response.put("details", t.getMessage());
+        return ResponseEntity.status(503).body(response);
     }
 
     // Update user info

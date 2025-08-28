@@ -38,11 +38,14 @@ public class OrderEntity {
     
     @Column(name = "final_amount", nullable = false)
     private Double finalAmount;
-    
-    @Column(name = "shipping_address", columnDefinition = "TEXT")
-    private Timestamp orderTime;
 
-    /**
+	@Column(name = "shipping_address", columnDefinition = "TEXT")
+	private String shippingAddress;
+
+	@Column(name = "order_time", nullable = false)
+	private Timestamp orderTime;
+
+	/**
      * One-to-many relationship with OrderItemEntity.
      * CascadeType.ALL → saves/deletes child items automatically.
      * FetchType.LAZY → loads items only when needed.

@@ -67,7 +67,7 @@ public class AuthService {
             user.setFirstName(updatedUser.getFirstName());
             user.setLastName(updatedUser.getLastName());
             user.setPhone(updatedUser.getPhone());
-            user.setAddress(updatedUser.getAddress());
+//            user.setAddress(updatedUser.getAddress());
             user.setEmail(updatedUser.getEmail());
             return userRepo.save(user);
         });

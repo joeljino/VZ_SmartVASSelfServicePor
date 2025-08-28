@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vasCat")
+@RequestMapping("catalog/vasCat")
 public class VasCatalogController {
 
     private final VasCatalogService service;

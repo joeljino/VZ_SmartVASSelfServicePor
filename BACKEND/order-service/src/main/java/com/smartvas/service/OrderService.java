@@ -31,10 +31,10 @@ public class OrderService {
 
     public OrderEntity createOrder(OrderEntity order) {
 
-    	
-    	//if(order.getOrderItems()!=null) {
-    		//order.getOrderItems().forEach(item->item.setOrder(order));
-    	//}
+        if (order.getOrderItems() != null) {
+            order.getOrderItems().forEach(item -> item.setOrder(order));
+        }
+
         return orderRepository.save(order);
     }
 

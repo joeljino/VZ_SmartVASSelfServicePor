@@ -106,6 +106,36 @@
 			<version>0.12.6</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-config-client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-client</artifactId>
+<!--			<version>4.3.0</version>-->
+		</dependency>
+
+
+		<!-- Resilience4j Spring Boot Starter -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot3</artifactId>
+<!--			<version>2.2.2</version>-->
+		</dependency>
+
+		<!-- Optional: Annotations support -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-annotations</artifactId>
+<!--			<version>2.2.2</version>-->
+		</dependency>
+
+		<!-- Optional: Spring Boot actuator metrics integration -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-micrometer</artifactId>
+<!--			<version>2.2.2</version>-->
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
