@@ -47,17 +47,17 @@ public class SubscrController {
                 });
     }
 
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<Map<String, Object>> getByUser(@PathVariable Long userId) {
-//        List<Subscription> subs = service.getSubscriptionsByUser(userId);
-//
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("success", true);
-//        response.put("message", subs.isEmpty() ? "No subscriptions found" : "Subscriptions retrieved successfully");
-//        response.put("data", subs);
-//
-//        return ResponseEntity.ok(response);
-//    }
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Map<String, Object>> getByUser(@PathVariable Long userId) {
+        List<Subscription> subs = service.getSubscriptionsByUser(userId);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("message", subs.isEmpty() ? "No subscriptions found" : "Subscriptions retrieved successfully");
+        response.put("data", subs);
+
+        return ResponseEntity.ok(response);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @RequestBody Subscription sub) {

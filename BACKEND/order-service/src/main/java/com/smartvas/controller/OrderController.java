@@ -16,7 +16,8 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
+    
+    //only for adminn
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllOrders() {
         List<OrderEntity> orders = orderService.getAllOrders();

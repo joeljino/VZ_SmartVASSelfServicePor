@@ -28,9 +28,9 @@ public class SubscrService {
         return repo.save(subscription);
     }
 
-//    public List<Subscription> getSubscriptionsByUser(Long userId) {
-//        return repo.findByUserId(userId);
-//    }
+    public List<Subscription> getSubscriptionsByUser(Long userId) {
+        return repo.findByUserId(userId);
+    }
 
     public Optional<Subscription> getSubscription(Long id) {
         return repo.findById(id);

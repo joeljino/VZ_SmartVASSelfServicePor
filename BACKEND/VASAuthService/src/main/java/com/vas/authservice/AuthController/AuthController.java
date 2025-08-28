@@ -4,6 +4,14 @@ import com.vas.authservice.Entity.Admin;
 import com.vas.authservice.Entity.User;
 import com.vas.authservice.AuthService.AuthService;
 import com.vas.authservice.config.JwtUtil;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication Controller", description = "APIs for user and admin authentication and management")
 public class AuthController {
 
     private final AuthService authService;
@@ -27,6 +36,12 @@ public class AuthController {
 
     // User signup
     @PostMapping("/signup/user")
+    @Operation(summary = "Register a new user", description = "Registers a new user in the system")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User registered successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class)))
+    })
     public ResponseEntity<Map<String, Object>> registerUser(@RequestBody User user) {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "User registered successfully");
@@ -36,6 +51,12 @@ public class AuthController {
 
     // Admin signup
     @PostMapping("/signup/admin")
+    @Operation(summary = "Register a new admin", description = "Registers a new admin in the system")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Admin registered successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class)))
+    })
     public ResponseEntity<Map<String, Object>> registerAdmin(@RequestBody Admin admin) {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Admin registered successfully");
@@ -45,6 +66,14 @@ public class AuthController {
 
     // User login with JWT
     @PostMapping("/login/user")
+    @Operation(summary = "User login", description = "Login for users with username and password")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login successful",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))),
+            @ApiResponse(responseCode = "401", description = "Invalid credentials",
+                    content = @Content)
+    })
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, String> payload) {
         return authService.loginUser(payload.get("username"), payload.get("password"))
                 .map(u -> {
@@ -65,6 +94,14 @@ public class AuthController {
 
     // Admin login with JWT
     @PostMapping("/login/admin")
+    @Operation(summary = "Admin login", description = "Login for admins with username and password")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login successful",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))),
+            @ApiResponse(responseCode = "401", description = "Invalid credentials",
+                    content = @Content)
+    })
     public ResponseEntity<Map<String, Object>> loginAdmin(@RequestBody Map<String, String> payload) {
         return authService.loginAdmin(payload.get("username"), payload.get("password"))
                 .map(a -> {
@@ -85,12 +122,26 @@ public class AuthController {
 
     // Get all users (admin only)
     @GetMapping("/users/admin")
+    @Operation(summary = "Get all users", description = "Retrieve a list of all registered users (Admin only)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of users retrieved",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = User.class, type = "array")))
+    })
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok(authService.getAllUsers());
     }
 
     // Get user by ID
     @GetMapping("/user/{id}")
+    @Operation(summary = "Get user by ID", description = "Retrieve user details by user ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User found",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content)
+    })
     public ResponseEntity<Map<String, Object>> getUserById(@PathVariable Long id) {
         return authService.getUserById(id)
                 .map(user -> {
@@ -109,6 +160,14 @@ public class AuthController {
 
     // Get admin by ID
     @GetMapping("/admin/{id}")
+    @Operation(summary = "Get admin by ID", description = "Retrieve admin details by admin ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Admin found",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))),
+            @ApiResponse(responseCode = "404", description = "Admin not found",
+                    content = @Content)
+    })
     public ResponseEntity<Map<String, Object>> getAdminById(@PathVariable Long id) {
         return authService.getAdminById(id)
                 .map(admin -> {
@@ -127,6 +186,14 @@ public class AuthController {
 
     // Update user info
     @PutMapping("/user/{id}")
+    @Operation(summary = "Update user info", description = "Update information for an existing user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User updated successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content)
+    })
     public ResponseEntity<Map<String, Object>> updateUserInfo(@PathVariable Long id, @RequestBody User updatedUser) {
         return authService.updateUserInfo(id, updatedUser)
                 .map(user -> {
