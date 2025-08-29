@@ -82,6 +82,7 @@ public class AuthController {
                     String token = jwtUtil.generateToken(u.getUsername(), "USER");
                     Map<String, Object> response = new HashMap<>();
                     response.put("id", u.getUserId());
+                    response.put("username", u.getUsername());
                     response.put("role", "USER");
                     response.put("token", token);
                     response.put("message", "Login successful");

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+//import com.vas.subscriptionservice.Entity.Subscription.BillingCycle;
+
 @Entity
 @Table(name = "vas_catalog")
 public class VasCatalog {
@@ -17,9 +19,12 @@ public class VasCatalog {
     @Column(columnDefinition = "TEXT")
     private String serviceDescription;
 
-    private String serviceType;        // basic, premium, enterprise
+    private String serviceType;       
     private BigDecimal price;
-    private String billingCycle;       // monthly, quarterly, yearly, one_time
+    
+    @Enumerated(EnumType.STRING)
+	private BillingCycle billingCycle;
+      
     private boolean isActive = true;
 
     @Column(columnDefinition = "TEXT")
@@ -28,6 +33,13 @@ public class VasCatalog {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
 
+    	
+    public enum BillingCycle {
+		MONTHLY, QUARTERLY, YEARLY
+	}
+
+    
+    
     // getters and setters
     public Long getServiceId() {
         return serviceId;
@@ -69,19 +81,29 @@ public class VasCatalog {
         this.price = price;
     }
 
-    public String getBillingCycle() {
-        return billingCycle;
-    }
-
-    public void setBillingCycle(String billingCycle) {
-        this.billingCycle = billingCycle;
-    }
+//    public String getBillingCycle() {
+//        return billingCycle;
+//    }
+//
+//    public void setBillingCycle(String billingCycle) {
+//        this.billingCycle = billingCycle;
+//    }
+    
+    
 
     public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean active) {
+    public BillingCycle getBillingCycle() {
+		return billingCycle;
+	}
+
+	public void setBillingCycle(BillingCycle billingCycle) {
+		this.billingCycle = billingCycle;
+	}
+
+	public void setIsActive(boolean active) {
         isActive = active;
     }
 
