@@ -168,6 +168,9 @@ public class AuthController {
                     response.put("id", user.getUserId());
                     response.put("username", user.getUsername());
                     response.put("email", user.getEmail());
+                    response.put("firstName", user.getFirstName());
+                    response.put("lastName", user.getLastName());
+                    response.put("phone", user.getPhone());
                     return ResponseEntity.ok(response);
                 })
                 .orElseGet(() -> {

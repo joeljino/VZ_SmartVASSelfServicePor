@@ -12,6 +12,9 @@ import Notification from './pages/Notification.jsx'
 import Product from './pages/Product.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Cart from './pages/Cart.jsx'
+import Orders from './pages/orders.jsx'
+import PaymentSuccess from './pages/PaymentSuccess.jsx'
+import PaymentCart from './pages/PaymentCart.jsx'
 
 
 export default function App() {
@@ -28,13 +31,15 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/payment-cart" element={<Payment-cart />} />
+          <Route path="/payment-cart" element={<PaymentCart />} />
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/product" element={<Product />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders/>} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
         </Routes>
       </main>
       {location.pathname !== '/' && <Footer />}

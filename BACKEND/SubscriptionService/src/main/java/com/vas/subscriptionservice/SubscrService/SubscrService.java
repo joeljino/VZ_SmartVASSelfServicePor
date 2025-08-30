@@ -24,7 +24,7 @@ public class SubscrService {
         LocalDate nextBilling = calculateNextBillingDate(LocalDate.now(), subscription.getBillingCycle());
         subscription.setNextBillingDate(nextBilling);
 
-        subscription.setStatus(Subscription.Status.ACTIVE);
+//        subscription.setStatus(Subscription.Status.ACTIVE);
         return repo.save(subscription);
     }
 
@@ -40,6 +40,10 @@ public class SubscrService {
         return repo.findById(id).map(existing -> {
             existing.setStatus(updated.getStatus());
             existing.setAutoRenew(updated.getAutoRenew());
+            existing.setStartDate(updated.getStartDate());
+            existing.setEndDate(updated.getEndDate());
+            existing.setBillingCycle(updated.getBillingCycle());
+
             return repo.save(existing);
         }).orElseThrow(() -> new RuntimeException("Subscription not found"));
     }

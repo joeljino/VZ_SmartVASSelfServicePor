@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axiosInstance from "../api/axiosInstance"; // ✅ axios integrated
+import axiosInstance from "../api/axiosInstance";
 import loginBanner from "../assets/banner-login.png";
 import { Eye, EyeOff } from "lucide-react";
 

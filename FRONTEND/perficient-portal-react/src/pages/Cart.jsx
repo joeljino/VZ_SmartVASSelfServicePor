@@ -44,7 +44,7 @@ export default function Cart(){
       {items.length>0 && (
         <div className="mt-6 flex items-center justify-between">
           <div className="text-xl font-bold">Total: ₹{total}</div>
-          <button onClick={()=>navigate('/payment', { state: { item: {type:'cart', name:`Cart (${items.length})`, price: total} } })} className="bg-brand-red text-white px-5 py-2 rounded-xl">Pay</button>
+          <button onClick={()=>navigate('/payment-cart', { state: { item: {type:'cart', name:`Cart (${items.length})`, price: total} } })} className="bg-brand-red text-white px-5 py-2 rounded-xl">Pay</button>
         </div>
       )}
     </div>

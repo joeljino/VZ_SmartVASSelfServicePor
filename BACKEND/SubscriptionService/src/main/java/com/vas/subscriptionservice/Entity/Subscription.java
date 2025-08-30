@@ -47,11 +47,21 @@ public class Subscription {
 	public Long getSubscriptionId() { return subscriptionId; }
 	public void setSubscriptionId(Long subscriptionId) { this.subscriptionId = subscriptionId; }
 
-	public Long getSubscriberId() { return userId; }
-	public void setSubscriberId(Long userId) { this.userId = userId; }
+	public Long getUserId() {
+		return userId;
+	}
 
-	public String getTargetPhoneNumber() { return targetPhoneNumber; }
-	public void setTargetPhoneNumber(String targetPhoneNumber) { this.targetPhoneNumber = targetPhoneNumber; }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getTargetPhoneNumber() {
+		return targetPhoneNumber;
+	}
+
+	public void setTargetPhoneNumber(String targetPhoneNumber) {
+		this.targetPhoneNumber = targetPhoneNumber;
+	}
 
 	public Long getServiceId() { return serviceId; }
 	public void setServiceId(Long serviceId) { this.serviceId = serviceId; }

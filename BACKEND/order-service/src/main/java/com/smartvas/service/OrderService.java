@@ -65,4 +65,7 @@ public class OrderService {
     }
 
 
+    public List<OrderEntity> getOrdersByUserId(Integer userId) {
+        return orderRepository.findByUserId(userId);
+    }
 }

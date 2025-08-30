@@ -236,7 +236,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 
 export default function Plans() {
   const [tab, setTab] = useState("data");
@@ -263,7 +263,7 @@ export default function Plans() {
     const fetchPlans = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8085/catalog/vasCat", {
+        const res = await axiosInstance.get("/catalog/vasCat", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -271,8 +271,8 @@ export default function Plans() {
 
         console.log("Fetched plans:", res.data);
 
-        const dataPlans = res.data.filter((p) => p.serviceType === "Data");
-        const wifiPlans = res.data.filter((p) => p.serviceType === "WiFi");
+        const dataPlans = res.data.filter((p) => (p.serviceType === "Data" || p.serviceType === "DATA"));
+        const wifiPlans = res.data.filter((p) => (p.serviceType === "WiFi" || p.serviceType === "WIFI"));
 
         // Parse features JSON for each plan
         const parseFeatures = (planList) =>
@@ -350,10 +350,12 @@ export default function Plans() {
                   navigate("/payment", {
                     state: {
                       item: {
-                        type: "plan",
-                        id: p.serviceId,
-                        name: p.serviceName,
-                        price: p.price,
+                        type: p.serviceType,
+                        serviceId: p.serviceId,
+                        serviceName: p.serviceName,
+                        servicePrice: p.price,
+                        ServiceBilling_cycle: p.billingCycle,
+
                       },
                     },
                   })

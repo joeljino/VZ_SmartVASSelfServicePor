@@ -28,7 +28,7 @@ public class OrderEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name="status", nullable = false)
-    private OrderStatus status = OrderStatus.PENDING;  // Default status
+    private OrderStatus status = OrderStatus.PROCESSING;  // Default status
     
     @Column(name = "total_amount", nullable = false)
     private Double totalAmount;

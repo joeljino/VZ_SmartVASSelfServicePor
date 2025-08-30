@@ -46,6 +46,24 @@ public class OrderController {
                 });
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Map<String, Object>> getOrdersByUserId(@PathVariable Integer userId) {
+        List<OrderEntity> orders = orderService.getOrdersByUserId(userId);
+
+        Map<String, Object> response = new HashMap<>();
+        if (orders.isEmpty()) {
+            response.put("success", false);
+            response.put("message", "No orders found for user id: " + userId);
+            return ResponseEntity.status(404).body(response);
+        }
+
+        response.put("success", true);
+        response.put("message", "Orders found");
+        response.put("data", orders);
+        return ResponseEntity.ok(response);
+    }
+
+
     @PostMapping
     public ResponseEntity<Map<String, Object>> createOrder(@RequestBody OrderEntity order) {
         OrderEntity createdOrder = orderService.createOrder(order);
