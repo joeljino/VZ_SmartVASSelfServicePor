@@ -28,6 +28,7 @@ export default function LoginRegister() {
 
   // 🔹 LOGIN
   const onLogin = async (e) => {
+    // localStorage.removeItem("token"); 
     e.preventDefault();
     const errs = {};
     if (!login.username.trim()) errs.username = "Username required";

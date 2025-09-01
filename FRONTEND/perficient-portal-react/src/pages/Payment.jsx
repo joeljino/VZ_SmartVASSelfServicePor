@@ -1011,8 +1011,21 @@ export default function Payment() {
         await axiosInstance.post("/subscriptions", payload, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        alert("Payment successful and subscription created!");
+        alert("Payment successful and Plan Subscribed!");
       }
+
+      const notificationPayload = {
+        userId,
+        type: "SUBSCRIPTION",
+        title: subscriptionId ? "Subscription Renewed" : "Subscription Activated",
+        message: subscriptionId
+          ? `Your subscription for ${item.serviceName} has been renewed successfully.`
+          : `Your subscription for ${item.serviceName} has been activated successfully.`,
+      };
+
+      await axiosInstance.post("/notifications", notificationPayload, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
 
       const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
       purchases.push({ ...item, date: startDate.toISOString(), method: form.method });
@@ -1020,6 +1033,8 @@ export default function Payment() {
 
       // navigate("/subscription");
       navigate("/payment-success", { state: { type: "subscription"} });
+
+
     } catch (err) {
       console.error("Error processing subscription:", err);
       alert("Subscription Failed!");

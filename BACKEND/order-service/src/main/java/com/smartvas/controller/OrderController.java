@@ -1,6 +1,7 @@
 package com.smartvas.controller;
 
 import com.smartvas.entity.OrderEntity;
+import com.smartvas.entity.OrderItemEntity;
 import com.smartvas.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -73,6 +74,19 @@ public class OrderController {
         response.put("data", createdOrder);
         return ResponseEntity.status(201).body(response);
     }
+    
+//    @PostMapping
+//    public ResponseEntity<Map<String, Object>> createOrder(@RequestBody List<OrderItemEntity> items) {
+//	    OrderEntity order = new OrderEntity();
+//	    order.setOrderItems(items);
+//	    OrderEntity ordersCreated = orderService.createOrder(order);
+//	    Map<String, Object> response = new HashMap<>();
+//	    response.put("success", true);
+//	    response.put("message", "Order created successfully (no service call)");
+//	    response.put("data", ordersCreated);
+//	    return ResponseEntity.status(201).body(response);
+//
+//    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateOrder(

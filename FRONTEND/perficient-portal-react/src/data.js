@@ -15,39 +15,39 @@
 //   ]
 // }
 
-export const products = [
-  {
-  id: 'router-1',
-  name: 'Speedster Router AX1500',
-  price: 2499,
-  category: 'Router',
-  image: '/src/assets/router.png',
-  description: `Dual-band Wi‑Fi 6 router with MU-MIMO and OFDMA, offering faster speeds, better coverage, and improved network efficiency for multiple devices simultaneously. Ideal for gaming, streaming, and smart home setups.`,
-  specifications: {
-    wifiStandard: 'Wi-Fi 6 (802.11ax)',
-    frequency: 'Dual-band 2.4GHz & 5GHz',
-    maxSpeed: 'Up to 1.5 Gbps',
-    antennas: '4 external high-gain antennas',
-    ports: '1x Gigabit WAN, 4x Gigabit LAN',
-    security: 'WPA3 encryption, VPN support, firewall',
-    qos: 'Advanced QoS for gaming & streaming',
-    coverage: 'Up to 2000 sq.ft.',
-    features: [
-      'MU-MIMO & OFDMA technology',
-      'Parental controls & guest network',
-      'Easy setup via mobile app',
-      'Supports up to 50 devices simultaneously',
-      'Beamforming for stronger signal to connected devices'
-    ],
-    power: '12V/1.5A adapter included',
-    dimensions: '220 x 160 x 40 mm',
-    weight: '450g'
-  }
-}
-,
-  { id: 'tablet-1', name: 'Slate Tablet 10"', price: 14999, category: 'Tablet', image: '/src/assets/tablet.png', description: '10-inch IPS display, 4GB RAM, 64GB storage, LTE.' },
-  { id: 'headset-1', name: 'Wave Bluetooth Headset', price: 1999, category: 'Bluetooth Headset', image: '/src/assets/headset.png', description: 'ANC, 30-hour battery, low-latency mode.' }
-]
+// export const products = [
+//   {
+//   id: 'router-1',
+//   name: 'Speedster Router AX1500',
+//   price: 2499,
+//   category: 'Router',
+//   image: '/src/assets/router.png',
+//   description: `Dual-band Wi‑Fi 6 router with MU-MIMO and OFDMA, offering faster speeds, better coverage, and improved network efficiency for multiple devices simultaneously. Ideal for gaming, streaming, and smart home setups.`,
+//   specifications: {
+//     wifiStandard: 'Wi-Fi 6 (802.11ax)',
+//     frequency: 'Dual-band 2.4GHz & 5GHz',
+//     maxSpeed: 'Up to 1.5 Gbps',
+//     antennas: '4 external high-gain antennas',
+//     ports: '1x Gigabit WAN, 4x Gigabit LAN',
+//     security: 'WPA3 encryption, VPN support, firewall',
+//     qos: 'Advanced QoS for gaming & streaming',
+//     coverage: 'Up to 2000 sq.ft.',
+//     features: [
+//       'MU-MIMO & OFDMA technology',
+//       'Parental controls & guest network',
+//       'Easy setup via mobile app',
+//       'Supports up to 50 devices simultaneously',
+//       'Beamforming for stronger signal to connected devices'
+//     ],
+//     power: '12V/1.5A adapter included',
+//     dimensions: '220 x 160 x 40 mm',
+//     weight: '450g'
+//   }
+// }
+// ,
+//   { id: 'tablet-1', name: 'Slate Tablet 10"', price: 14999, category: 'Tablet', image: '/src/assets/tablet.png', description: '10-inch IPS display, 4GB RAM, 64GB storage, LTE.' },
+//   { id: 'headset-1', name: 'Wave Bluetooth Headset', price: 1999, category: 'Bluetooth Headset', image: '/src/assets/headset.png', description: 'ANC, 30-hour battery, low-latency mode.' }
+// ]
 
 export const paymentLogos = {
   visa: '/src/assets/visa.png',

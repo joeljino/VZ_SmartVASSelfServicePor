@@ -2,7 +2,7 @@ package com.notification.service;
 
 import com.notification.entity.Notification;
 import com.notification.repository.NotificationRepository;
-import com.notification.util.NotificationSender;
+//import com.notification.util.NotificationSender;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,17 +11,17 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository repository;
-    private final NotificationSender sender;
+//    private final NotificationSender sender;
 
-    public NotificationServiceImpl(NotificationRepository repository, NotificationSender sender) {
+    public NotificationServiceImpl(NotificationRepository repository) {
         this.repository = repository;
-        this.sender = sender;
+//        this.sender = sender;
     }
 
     @Override
     public Notification createNotification(Notification notification) {
         Notification saved = repository.save(notification);
-        sender.sendNotification(saved);
+//        sender.sendNotification(saved);
         return saved;
     }
 

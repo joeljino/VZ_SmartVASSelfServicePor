@@ -1,5 +1,5 @@
 package com.notification.entity;
 
 public enum NotificationType {
-    ORDER, PAYMENT, SUBSCRIPTION, SYSTEM, PROMOTIONAL
+    ORDER, SUBSCRIPTION, ORDER_CANCELLED
 }

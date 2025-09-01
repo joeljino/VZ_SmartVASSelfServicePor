@@ -1,11 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-	<name>VZ_SmartVASSelfServicePortal</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-	</buildSpec>
-	<natures>
-	</natures>
-</projectDescription>
+INSERT INTO vas_catalog 
+(service_name, service_type, price, billing_cycle, features, is_active, service_description, created_at, updated_at)
+VALUES 
+(
+  'WiFi Unlimited Yearly', 
+  'WiFi', 
+  11999, 
+  'YEARLY', 
+  '{
+    "data":"Unlimited",
+    "validity":"365 days",
+    "dailyLimit":"None",
+    "installation":"Included",
+    "router":"Included",
+    "support":"24x7",
+    "noDailyLimit":true
+  }', 
+  TRUE, 
+  'Unlimited high-speed WiFi yearly with included router.', 
+  NOW(), 
+  NOW()
+);

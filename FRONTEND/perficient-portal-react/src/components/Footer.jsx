@@ -9,7 +9,7 @@ export default function Footer(){
           <div className="w-2 h-2 bg-black rounded-full"></div>
           <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
         </div>
-        <p className="text-black"><span className="font-semibold">Perficient</span> · Smart VAS Self Service Portal</p>
+        <p className="text-black"><span className="font-semibold">FlexiCom</span> · Smart VAS Self Service Portal</p>
         <p className="text-gray-500">© {new Date().getFullYear()} All rights reserved.</p>
       </div>
     </footer>
