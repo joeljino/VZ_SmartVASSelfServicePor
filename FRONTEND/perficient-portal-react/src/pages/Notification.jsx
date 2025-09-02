@@ -9,8 +9,10 @@ export default function Notification() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-      
-        const res = await axiosInstance.get("/notifications/1");
+        const rawUser=localStorage.getItem("user");
+        const storedUser=rawUser?JSON.parse(rawUser):null;
+        const userId=storedUser?.id;
+        const res = await axiosInstance.get(`/notifications/${userId}`);
         const data = res.data || [];
 
         const sorted = [...data].sort(

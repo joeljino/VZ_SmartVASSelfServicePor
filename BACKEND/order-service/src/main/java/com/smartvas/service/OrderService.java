@@ -59,6 +59,10 @@ public class OrderService {
             if (updatedOrder.getOrderTime() != null) {
                 existingOrder.setOrderTime(updatedOrder.getOrderTime());
             }
+            
+            if (updatedOrder.getCancelReason() != null) {
+                existingOrder.setCancelReason(updatedOrder.getCancelReason());
+            }
 
             return orderRepository.save(existingOrder);
         }).orElse(null);

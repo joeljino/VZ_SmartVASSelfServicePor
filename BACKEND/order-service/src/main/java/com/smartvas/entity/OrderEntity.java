@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class OrderEntity {
 
-    @Id
+  	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="order_id")
     private Integer id;  // Primary key
@@ -44,6 +44,10 @@ public class OrderEntity {
 
 	@Column(name = "order_time", nullable = false)
 	private Timestamp orderTime;
+	
+	
+    @Column(name = "cancel_reason", columnDefinition = "TEXT")
+    private String cancelReason;
 
 	/**
      * One-to-many relationship with OrderItemEntity.
@@ -119,5 +123,11 @@ public class OrderEntity {
 	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
-    
+	public String getCancelReason() {
+		return cancelReason;
+	}
+
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 }
